@@ -1,0 +1,14 @@
+  Leftmost Column with at Least a One
+  
+class Solution {
+public:
+    int leftMostColumnWithOne(BinaryMatrix &binaryMatrix) {
+        vector<int> dim=binaryMatrix.dimensions();
+        int row=dim[0]-1;
+        int col=dim[1]-1;
+        int result=-1;
+        int r=0;
+        int c=col;
+        while()
+    }
+};
