@@ -1,0 +1,29 @@
+BACKSPACE STRING COMPARE
+    
+    for(size_t i = 0; i < S.size(); i++)
+    {
+        if(S[i] == '#' && !a.empty())
+        {
+            a.pop();
+        }
+        else if(S[i] != '#')
+        {
+            a.push(S[i]);
+        }
+    }
+    
+    for(size_t i = 0; i < T.size(); i++)
+    {
+        if(T[i] == '#' && !b.empty())
+        {
+            b.pop();
+        }
+        else if(T[i] != '#')
+        {
+            b.push(T[i]);
+        }
+    }
+     
+    return a == b;
+}
+};
