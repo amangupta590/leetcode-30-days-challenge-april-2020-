@@ -1,0 +1,27 @@
+class MinStack {
+    stack<pair<int,int>> sp;
+    int minval = 2147483647;    //this stores the min element seen so far
+public:
+    /** initialize your data structure here. */
+    MinStack() {}
+    
+    void push(int x) {
+        if(x < minval)
+            minval = x;
+        sp.push({x,minval});
+    }
+    
+    void pop() {
+        sp.pop();
+       
+        minval = sp.empty()?2147483647:sp.top().second;
+    }
+    
+    int top() {
+        return sp.top().first;
+    }
+    
+    int getMin() {
+        return sp.top().second;
+    }
+};
