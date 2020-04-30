@@ -1,0 +1,32 @@
+class Solution {
+public:
+    string stringShift(string s, vector<vector<int>>& shift) {
+       int totalshift=0;
+        for(int i=0;i<shift.size();i++){
+            int direction=shift[i][0];
+            int amount=shift[i][1];
+            if(direction==0){
+                totalshift-=amount;
+            }
+            else{
+                totalshift+=amount;
+            }
+        }
+        string newfront;
+        string newback;
+        if(totalshift<0){
+            totalshift=abs(totalshift)%s.size();
+            newfront=s.substr(totalshift);
+            newback=s.substr(0,totalshift);
+        }
+        else if(totalshift>0){
+            totalshift=totalshift%s.size();
+            newfront=s.substr(s.size()-totalshift,s.size()-1);
+            newback=s.substr(0,s.size()-totalshift);
+        }
+        else{
+            return s;
+        }
+        return newfront +newback;
+    }
+};
