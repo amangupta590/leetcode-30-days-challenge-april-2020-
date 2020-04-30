@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        vector<int>meraright(nums.size());
+        vector<int>meraleft(nums.size());
+        meraleft[0]=1;
+        for(int i=1;i<nums.size();i++){
+            meraleft[i]=nums[i-1]*meraleft[i-1];
+        }
+        int R=1;
+         for (int i = nums.size() - 1; i >= 0; i--) {
+
+            meraleft[i] = meraleft[i] * R;
+            R *= nums[i];
+        }
+
+        return meraleft;
+        
+        
+    }
+};
