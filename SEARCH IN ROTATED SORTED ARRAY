@@ -1,0 +1,44 @@
+class Solution {
+   
+   int findP(vector<int>& nums, int s, int e, int target){
+       if(s<=e){
+           int m = (s+e)/2;
+           if(nums[m] == target)
+               return m;
+           if(nums[s]<=nums[m]){ 
+   			//This means the left of middle is sorted
+               if(nums[s]<=target && nums[m]>=target) // This means target is in left part we can perform binary search on left part
+                   return find(nums, s, m, target);
+               else // Since right part is not sorted we recursively look for target in right part 
+                   return findP(nums, m+1, e, target);
+           }
+           else{
+               if(nums[m]<=target && nums[e]>=target) // target in right part which is sorted
+                   return find(nums, m, e, target);
+               else // looking in the left part which has pivot
+                   return findP(nums, s, m-1, target); 
+           }
+       }
+       return -1;
+   }
+   //This performs binary search
+   int find(vector<int>& nums, int s, int e, int t){
+       if(s<=e){
+           int m = (s+e)/2;
+           if(nums[m] == t)
+               return m;
+           else if(nums[m] > t)
+               return find(nums, s, m-1, t);
+           else
+               return find(nums, m+1, e, t);
+       }
+       return -1;
+   }
+public:
+   int search(vector<int>& nums, int target) {
+       int n = nums.size();
+       if(n==0)
+           return -1;
+       return findP(nums, 0, n-1, target);
+   }
+};
